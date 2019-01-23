@@ -1,0 +1,7 @@
+.root {
+    -fx-background-color: #ff9584;
+}
+
+.testclass {
+    -fx-text-fill: red;
+}
