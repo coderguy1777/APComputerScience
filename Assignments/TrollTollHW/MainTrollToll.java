@@ -8,6 +8,7 @@ public class MainTrollToll {
         String name = scan.next();
 
         TrollToll toll = new TrollToll(name);
+        System.out.println(toll.getTotal());
         boolean running = true;
         while(running) {
             System.out.println("Type 1 to collect money, or 2 to get your sum and exit the collection fun!");
@@ -17,6 +18,7 @@ public class MainTrollToll {
             }
             if(input == 2) {
                 toll.banksum();
+                toll.getTotal();
                 break;
             }
         }
