@@ -5,3 +5,8 @@
 .testclass {
     -fx-text-fill: red;
 }
+
+button {
+    -fx-max-width: 100px;
+    -fx-max-height: 100px;
+}
