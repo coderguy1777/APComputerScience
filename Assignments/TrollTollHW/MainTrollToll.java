@@ -1,4 +1,3 @@
-package TrollTollHW;
 import java.util.Scanner;
 
 public class MainTrollToll {
@@ -8,6 +7,7 @@ public class MainTrollToll {
         String name = scan.next();
 
         TrollToll toll = new TrollToll(name);
+        TrollToll toll2 = new TrollToll("John");
         System.out.println(toll.getTotal());
         boolean running = true;
         while(running) {
