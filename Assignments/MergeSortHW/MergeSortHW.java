@@ -41,11 +41,24 @@ public class MergeSortHW {
                             System.out.println(ic);
                             System.out.println(iu);
 
-                            if(ic.size() % 2 == 0) {
+                            if(ic.size() % 2 !=  0) {
                                 List<Integer>ic4 = ic.subList(0, ic.size()/2);
                                 List<Integer>ic5 = ic.subList(ic.size()/2 , ic.size());
 
+                                if(ic4.size() % 2 != 0) {
+                                    List<Integer>finaluu = ic4.subList(ic4.size() - ic4.size(), ic4.size() - 2);
+                                    List<Integer>finalruu = ic4.subList(ic4.size() - 2, ic4.size());
+                                    System.out.println(finaluu);
+                                    System.out.println(finalruu);
 
+                                }
+
+                                if(ic5.size() % 2 == 0) {
+                                    List<Integer>finaluus = ic5.subList(ic5.size() - ic5.size(), ic5.size() - 2);
+                                    List<Integer>finalrruu = ic5.subList(ic5.size() - 2, ic5.size());
+                                    System.out.println(finaluus);
+                                    System.out.println(finalrruu);
+                                }
                             }
 
                             if(iu.size() % 2 == 0) {
