@@ -4,6 +4,10 @@ import java.io.*;
 import java.util.*;
 
 public class MergeSortHW {
+
+    // ArrayLists for the merge sort, the first input, 2nd two
+    // halves of the list.
+    // and the last one is the sorted arraylist.
     public static ArrayList<Integer> inputarr = new ArrayList<>();
     private static ArrayList<Integer> half1 = new ArrayList<>();
     public static ArrayList<Integer> half2 = new ArrayList<>();
@@ -21,6 +25,8 @@ public class MergeSortHW {
             inputarr.add(scan.nextInt());
         }
         scan.close();
+
+        // Execution of methods for the program, and the printing of the final list sorted with merge sort.
         halving(inputarr);
         mergesort(half1, half2);
         System.out.println(finalarr);
@@ -89,19 +95,27 @@ public class MergeSortHW {
             break;
         }
     }
+
+    // method that executes the merge sort algorithim on the two
+    // halfs of the list in this case.
     public static void mergesort(List<Integer>one, List<Integer> two) {
+        // Conversion of the first list half into an array.
         int[]ls1 = new int[one.size()];
         for(int i = 0; i < ls1.length; i++) {
             ls1[i] = one.get(i);
             finalarr.add(ls1[i]);
         }
+        // Simple tool for debugging I added, has no purpose.
         System.out.println('\n');
+
+        // Conversion of the second list half into an array.
         int[]ls2 = new int[two.size()];
         for(int ii = 0; ii < ls2.length; ii++) {
             ls2[ii] = two.get(ii);
             finalarr.add(ls2[ii]);
         }
 
+        // Algorithim is implemented on the final array list.
         for(int finalsort1 = 0; finalsort1 < finalarr.size(); finalsort1++) {
             for(int finalsort2 = finalsort1; finalsort2 < finalarr.size(); finalsort2 = finalsort2 + 1) {
                 int a = finalarr.get(finalsort1);
