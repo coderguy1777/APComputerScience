@@ -12,6 +12,7 @@ public class MergeSortHW {
     private static ArrayList<Integer> half1 = new ArrayList<>();
     public static ArrayList<Integer> half2 = new ArrayList<>();
     public static ArrayList<Integer> finalarr = new ArrayList<>();
+    public static int count = 0;
 
     // Throwing of the file not found exception for the file not being found
     // if that ew
@@ -29,7 +30,14 @@ public class MergeSortHW {
         // Execution of methods for the program, and the printing of the final list sorted with merge sort.
         halving(inputarr);
         mergesort(half1, half2);
-        System.out.println(finalarr);
+        System.out.println('\n');
+        System.out.println("Inputs: " + inputarr);
+        System.out.println("Half 1: " + half1);
+        System.out.println("Half 2: " + half2);
+        System.out.println("Final Array: " + finalarr);
+        System.out.println("Times done: " + (count * Math.log(count / Math.log(count))));
+        long start = System.nanoTime();
+        System.out.println("Current time: " + (start * Math.log(start)));
     }
 
     // Method where the input data list is halved for merge sort to later merge back together
@@ -49,22 +57,20 @@ public class MergeSortHW {
 
                     int a = half1tree.get(h);
                     int b = half1tree.get(hh);
-
                     if (b > a) {
                         Integer indice1 = half1tree.remove(hh);
                         half1tree.add(hh, b);
+                        count++;
                     }
 
                     if (b < a) {
                         Integer indice = half1tree.remove(hh);
                         half1tree.add(h, b);
+                        count++;
                     }
                 }
             }
-            for(int ib = 0; ib < half1tree.size(); ib++) {
-                Integer iu = half1tree.get(ib);
-                half1.add(iu);
-            }
+            half1.addAll(half1tree);
             // Adding of the sorted values into a list for the merging for the first half of the data.
 
             // Intiazlation of half2 of the merge sort in this case
@@ -80,14 +86,17 @@ public class MergeSortHW {
                     if (bb > aa) {
                         Integer id1 = half2tree.remove(zz);
                         half2tree.add(zz, bb);
+                        count++;
                     }
                     if (bb < aa) {
                         Integer id2 = half2tree.remove(zz);
                         half2tree.add(z, bb);
-                        half2.add(bb);
+                        count++;
+
                     }
                 }
             }
+            half2.addAll(half2tree);
 
             // Adding of the values from sorted half 2 of the merge sort.
             // into a 2nd arraylist mainly for the merging via a forEach
@@ -120,13 +129,19 @@ public class MergeSortHW {
             for(int finalsort2 = finalsort1; finalsort2 < finalarr.size(); finalsort2 = finalsort2 + 1) {
                 int a = finalarr.get(finalsort1);
                 int b = finalarr.get(finalsort2);
+                System.out.println(a + " " + b + " " + finalarr);
+                count++;
+
                 if(b > a) {
                     Integer rev1 = finalarr.remove(finalsort2);
                     finalarr.add(finalsort2, b);
+                    count++;
                 }
+
                 if(b < a) {
                     Integer rev2 = finalarr.remove(finalsort2);
                     finalarr.add(finalsort1, b);
+                    count++;
                 }
             }
         }
