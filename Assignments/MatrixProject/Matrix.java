@@ -8,9 +8,10 @@ package MatrixProject;
  */
 class Matrix {
     // Variables declared for each row in the matrix.
-    public int rowsize;
-    // Variables declared for 
-    public int columnsize;
+    private int rowsize;
+    // Variables declared for the column size in this case for the matrix.
+    private int columnsize;
+    // 2D Array used for the matrix itself
     private double[][] matrix;
 
     /*
