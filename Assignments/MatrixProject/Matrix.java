@@ -109,19 +109,42 @@ class Matrix {
     Does matrix multiplication on two inputted matrices, and spits out a new
     matrix, with both factors multiplied to find that new matrix.
     @param1: intakes one matrix to be multiplied.
-    @param2:
+    @param2: intakes a second matrix to be multiplied.
+    @return: returns a multiplied matrix, which in this case is matrix c for the
+    method in question in this case.
      */
     public static Matrix mult(Matrix a, Matrix b) throws MatrixException {
         if (a == null || b == null) {
             throw new MatrixException("An element of the matrix is making it null, mult invalid for the matrices used.");
         }
-        if (a.rowsize > b.rowsize || a.columnsize > b.columnsize) {
+        if (a.rowsize > b.columnsize) {
             throw new MatrixException("Matricies are not like dimensions.");
         } else {
-            Matrix c = new Matrix(a.rowsize, b.columnsize);
-            for (int i = 0; i < c.rowsize; i++) {
-                for (int j = 0; j < c.columnsize; j++) {
-                    c.matrix[i][j] = (a.matrix[i][j] * b.matrix[j][i]);
+            int rowvar = 0;
+            int colvar = 0;
+            if(a.rowsize < b.columnsize) {
+                rowvar = a.rowsize;
+                colvar = b.columnsize;
+            }
+            if(b.rowsize < a.columnsize) {
+                rowvar = b.rowsize;
+                colvar = a.columnsize;
+            }
+            Matrix c = new Matrix(rowvar, colvar);
+            for(int i =  0; i < c.rowsize; i++) {
+                for(int j = 0; j < c.columnsize; j++) {
+                    double multiplying = 0.0;
+                    if(rowvar == a.rowsize) {
+                        for(int z  = 0; z < a.rowsize; z++) {
+                            multiplying = multiplying + (a.matrix[i][z] * b.matrix[z][j]);
+                        }
+                    } else {
+                        for(int z2 = 0; z2 < b.rowsize; z2++) {
+                            multiplying = multiplying + (a.matrix[i][z2] * b.matrix[z2][j]);
+                        }
+                    }
+                    c.matrix[i][j] = multiplying;
+                    System.out.println(multiplying);
                 }
             }
             return c;
