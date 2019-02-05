@@ -1,3 +1,4 @@
+package MatrixProject;
 /*
  A Java Class that does a matrix for the following operations:
  Adding Matrices, Subtracting, Multiplying, and Scalar Multiplication, Along with transposing the matrix as well.
