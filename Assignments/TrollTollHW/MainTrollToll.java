@@ -1,3 +1,4 @@
+package TrollTollHW;
 import java.util.Scanner;
 
 public class MainTrollToll {
@@ -6,8 +7,7 @@ public class MainTrollToll {
         System.out.println("Please type the name of a troll you would like to collect money!");
         String name = scan.next();
 
-        TrollToll toll = new TrollToll(name);
-        TrollToll toll2 = new TrollToll("John");
+        TrollToll toll = new TrollToll(name, 1, 2, 2.2);
         System.out.println(toll.getTotal());
         boolean running = true;
         while(running) {

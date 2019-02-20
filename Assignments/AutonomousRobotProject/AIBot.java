@@ -1,7 +1,7 @@
 package AutonomousRobotProject;
-import sun.nio.ch.Net;
-
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class AIBot {
     static double neuralweights = (Math.random() * 10 - 20);

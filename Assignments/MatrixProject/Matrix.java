@@ -37,12 +37,14 @@ class Matrix {
     throw: throws an exception if the row or col is greater then the matrix parameters for
     setting the matrix value in this case.
      */
-    public void setmatrixvals(int row, int col, double matrixcellval) throws MatrixException {
+    public void set(int row, int col, double matrixcellval) throws MatrixException {
         if (row > rowsize || col > columnsize) {
             throw new MatrixException("Either your rows or columns for a matrix are too small to function properly for this program.");
         } else {
             int r = row;
             int c = col;
+            // sets the inputted value of the matrix for the method in this case equal to the
+            // double for the inputted value into the method into that spot of the matrix/
             matrix[r][c] = matrixcellval;
         }
     }
@@ -53,10 +55,15 @@ class Matrix {
     @return val: returns the wanted matrix value when the
     method is called as well.
      */
-    public double getCellVal(int row, int col) throws MatrixException {
+    public double get(int row, int col) throws MatrixException {
         if (row > rowsize || col > columnsize) {
             throw new MatrixException("The Selection you have selected is out of bounds!");
         }
+        if (row < 0 || col < 0) {
+            throw new MatrixException("Hippity Hoppity you cant get the number requested as you typed negative bounds which dont exist, get dabbed on normie, (que dab).");
+        }
+        // returns the cell value from the wanted spot in the matrix, with minus 1 in order
+        // to make it equal to the array parameter in this case.
         return matrix[row - 1][col - 1];
     }
 
@@ -68,7 +75,7 @@ class Matrix {
     public static Matrix add(Matrix a, Matrix b) throws MatrixException {
         if (a == null || b == null) {
             throw new MatrixException("These matrices shown cannot be added together.");
-        } else if (a.rowsize != b.rowsize || a.columnsize != b.columnsize) {
+        } else if (a.rowsize > b.rowsize || a.columnsize > b.columnsize) {
             throw new MatrixException("Matrices are not of equal dimensions, and cannot be added together.");
         } else {
             Matrix c = new Matrix(a.rowsize, a.columnsize);
@@ -90,6 +97,7 @@ class Matrix {
      matrix, matrix c in this case.
      */
     public static Matrix sub(Matrix a, Matrix b) throws MatrixException {
+        // Checks if either matrix is null and throws an exception if that is the case
         if (a == null || b == null) {
             throw new MatrixException("Either the first matrix is null, or second matrix is null, and these two cannot be subtracted from each other.");
         } else if (a.rowsize > b.rowsize || a.columnsize > b.columnsize) {
@@ -117,19 +125,20 @@ class Matrix {
         if (a == null || b == null) {
             throw new MatrixException("An element of the matrix is making it null, mult invalid for the matrices used.");
         }
-        if (a.rowsize > b.columnsize) {
+        if (a.rowsize > b.rowsize || a.columnsize > b.columnsize) {
             throw new MatrixException("Matricies are not like dimensions.");
         } else {
+            // Checks for the dimensions o the matrix, to set it to the
+            // proper dimensions for matrix c so that each can be multiplied properly in
+            // this case mainly.
             int rowvar = 0;
             int colvar = 0;
+            // sets up the matrix dimensions for matrix c properly
             if(a.rowsize < b.columnsize) {
                 rowvar = a.rowsize;
                 colvar = b.columnsize;
             }
-            if(b.rowsize < a.columnsize) {
-                rowvar = b.rowsize;
-                colvar = a.columnsize;
-            }
+            // Establishes the new matrix for the resulting multipled matrix
             Matrix c = new Matrix(rowvar, colvar);
             for(int i =  0; i < c.rowsize; i++) {
                 for(int j = 0; j < c.columnsize; j++) {
@@ -143,8 +152,12 @@ class Matrix {
                             multiplying = multiplying + (a.matrix[i][z2] * b.matrix[z2][j]);
                         }
                     }
-                    c.matrix[i][j] = multiplying;
+                    // takes the resulting answer for the multiplied matrix, and
+                    // the double that it was set equal, to be the result of the
+                    // the new matrix in this case, with this matrix being
+                    // matrix c.
                     System.out.println(multiplying);
+                    c.matrix[i][j] = multiplying;
                 }
             }
             return c;
@@ -166,7 +179,6 @@ class Matrix {
             for (int i1 = 0; i1 < c.rowsize; i1++) {
                 for (int i2 = 0; i2 < c.columnsize; i2++) {
                     c.matrix[i1][i2] = a.matrix[i1][i2] * scalarval;
-                    System.out.println(c.matrix[i1][i2]);
                 }
             }
             return c;
@@ -189,12 +201,20 @@ class Matrix {
             Matrix transposed = new Matrix(tval.columnsize, tval.rowsize);
             for (int i = 0; i < transposed.rowsize; i++) {
                 for (int j = 0; j < transposed.columnsize; j++) {
+                    // Sets up the transposed matrix.
                     transposed.matrix[i][j] = tval.matrix[j][i];
-                    System.out.println(transposed.matrix[i][j]);
 
                 }
             }
             return transposed;
         }
+    }
+}
+class MatrixException extends Exception {
+    public MatrixException() {
+        super();
+    }
+    public MatrixException(String s) {
+        super(s);
     }
 }

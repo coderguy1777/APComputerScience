@@ -1,7 +1,5 @@
 package AutonomousRobotProject;
 
-import javafx.application.Application;
-
 public class RandomBot extends Main {
     public int robotcount;
     static int time = 0;
@@ -31,5 +29,5 @@ public class RandomBot extends Main {
 
     public int getRobotcount(int robotcount) {
         return robotcount;
-}
+    }
 }

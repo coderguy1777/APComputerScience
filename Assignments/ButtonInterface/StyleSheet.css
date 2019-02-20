@@ -1,0 +1,12 @@
+.root {
+    -fx-background-color: black;
+}
+
+.box {
+    -fx-background-color: red;
+}
+
+
+.button2 {
+    -fx-color: orange;
+}

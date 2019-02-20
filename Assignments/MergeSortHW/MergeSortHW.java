@@ -132,16 +132,24 @@ public class MergeSortHW {
                 System.out.println(a + " " + b + " " + finalarr);
                 count++;
 
-                if(b > a) {
+                while(b > a || a > b) {
                     Integer rev1 = finalarr.remove(finalsort2);
                     finalarr.add(finalsort2, b);
                     count++;
+                    break;
                 }
 
-                if(b < a) {
+                while(b < a) {
                     Integer rev2 = finalarr.remove(finalsort2);
                     finalarr.add(finalsort1, b);
                     count++;
+                    break;
+                }
+                while(a < b) {
+                    Integer rev4 = finalarr.remove(finalsort1);
+                    finalarr.add(finalsort1, a);
+                    count++;
+                    break;
                 }
             }
         }
